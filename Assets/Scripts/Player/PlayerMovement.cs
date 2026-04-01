@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Reset()
     {
-        // References
         characterController = GetComponent<CharacterController>();
         if (playerCamera == null && Camera.main != null)
             playerCamera = Camera.main.transform;
     }
-    void Start()
+
+    private void Start()
     {
         if (characterController == null)
             characterController = GetComponent<CharacterController>();
@@ -37,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
         if (PlayerInteraction.IsDialogueOpen)
             return;
-            
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 

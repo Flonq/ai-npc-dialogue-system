@@ -16,7 +16,9 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private Button closeButton;
     [SerializeField] private TMP_Text npcMessageText;
-    [SerializeField] private string openingMessage = "Merhaba! Nasılsın?";
+    [Tooltip("Used only if ChoiceDialogue is not assigned. English recommended.")]
+    [SerializeField] private string openingMessage = "";
+    [SerializeField] private ChoiceDialogue choiceDialogue;
 
     private int npcLayer = -1;
     private bool canInteractWithNpc;
@@ -27,7 +29,9 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         npcLayer = LayerMask.NameToLayer(npcLayerName);
-        
+        if (npcLayer == -1)
+            Debug.LogError($"Layer not found: '{npcLayerName}'. Add it under Tags and Layers.");
+
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
 
@@ -80,7 +84,9 @@ public class PlayerInteraction : MonoBehaviour
         if (dialoguePanel != null)
             dialoguePanel.SetActive(true);
 
-        if (npcMessageText != null && !string.IsNullOrEmpty(openingMessage))
+        if (choiceDialogue != null)
+            choiceDialogue.OnDialogueOpened();
+        else if (npcMessageText != null && !string.IsNullOrEmpty(openingMessage))
             npcMessageText.text = openingMessage;
 
         Cursor.lockState = CursorLockMode.None;
