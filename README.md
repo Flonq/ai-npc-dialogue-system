@@ -142,6 +142,6 @@ Press **Play**, walk to the NPC, press **E**, talk away.
 <div align="center">
 
 Made with 🔧 + 🧠 by  
-**Mert Kaan Kındar**
+**Mert Kaan KINDAR**
 
 </div>
