@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -15,10 +14,10 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject promptHint;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private Button closeButton;
-    [SerializeField] private TMP_Text npcMessageText;
-    [Tooltip("Used only if ChoiceDialogue is not assigned. English recommended.")]
-    [SerializeField] private string openingMessage = "";
-    [SerializeField] private ChoiceDialogue choiceDialogue;
+    [SerializeField] private GameObject crosshair;
+
+    [Header("Logic")]
+    [SerializeField] private DialogueManager dialogueManager;
 
     private int npcLayer = -1;
     private bool canInteractWithNpc;
@@ -69,9 +68,6 @@ public class PlayerInteraction : MonoBehaviour
         if (promptHint != null)
             promptHint.SetActive(canInteractWithNpc && !isDialogueOpen);
 
-        if (isDialogueOpen && Input.GetKeyDown(KeyCode.Escape))
-            CloseDialogue();
-
         if (canInteractWithNpc && Input.GetKeyDown(KeyCode.E) && !isDialogueOpen)
             OpenDialogue();
     }
@@ -84,13 +80,14 @@ public class PlayerInteraction : MonoBehaviour
         if (dialoguePanel != null)
             dialoguePanel.SetActive(true);
 
-        if (choiceDialogue != null)
-            choiceDialogue.OnDialogueOpened();
-        else if (npcMessageText != null && !string.IsNullOrEmpty(openingMessage))
-            npcMessageText.text = openingMessage;
+        if (dialogueManager != null)
+            dialogueManager.StartDialogue();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if (crosshair != null)
+            crosshair.SetActive(false);
     }
 
     private void CloseDialogue()
@@ -101,7 +98,21 @@ public class PlayerInteraction : MonoBehaviour
         if (dialoguePanel != null)
             dialoguePanel.SetActive(false);
 
+        if (dialogueManager != null)
+            dialogueManager.EndDialogue();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (crosshair != null)
+            crosshair.SetActive(true);
+    }
+
+    public bool TryConsumeEscapeForDialogue()
+    {
+        if (!isDialogueOpen)
+            return false;
+        CloseDialogue();
+        return true;
     }
 }

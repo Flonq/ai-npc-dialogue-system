@@ -39,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.IsPaused)
+            return;
+
+        if (PlayerInteraction.IsDialogueOpen)
+            return;
+
         if (PlayerInteraction.IsDialogueOpen)
             return;
 

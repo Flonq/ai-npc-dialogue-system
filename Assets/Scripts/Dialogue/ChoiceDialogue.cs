@@ -4,15 +4,15 @@ using TMPro;
 
 public class ChoiceDialogue : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private TMP_Text npcMessageText;
     [SerializeField] private Button[] choiceButtons;
 
-    [Header("Lines (English)")]
-    [TextArea(2, 4)]
-    [SerializeField] private string npcQuestion = "How are you?";
+    [Header("Logic")]
+    [SerializeField] private DialogueManager dialogueManager;
 
-    [SerializeField] private string[] choiceLabels = { "Fine", "Tired", "I need to go" };
-    [SerializeField] private string[] choiceResponses = { "Glad to hear!", "Get some rest.", "Goodbye." };
+    [Header("Loading")]
+    [SerializeField] private string loadingText = "...";
 
     private void Awake()
     {
@@ -39,46 +39,69 @@ public class ChoiceDialogue : MonoBehaviour
         }
     }
 
-    public void OnDialogueOpened()
+    public void ShowLoading()
     {
         if (npcMessageText != null)
-            npcMessageText.text = npcQuestion;
-
-        if (choiceButtons == null)
-            return;
-
-        for (int i = 0; i < choiceButtons.Length; i++)
-        {
-            bool show = choiceLabels != null && i < choiceLabels.Length && !string.IsNullOrEmpty(choiceLabels[i]);
-            if (choiceButtons[i] == null)
-                continue;
-
-            choiceButtons[i].gameObject.SetActive(show);
-
-            if (!show)
-                continue;
-
-            TMP_Text label = choiceButtons[i].GetComponentInChildren<TMP_Text>();
-            if (label != null)
-                label.text = choiceLabels[i];
-        }
-    }
-
-    private void OnChoiceClicked(int index)
-    {
-        if (choiceResponses == null || index < 0 || index >= choiceResponses.Length)
-            return;
-
-        if (npcMessageText != null)
-            npcMessageText.text = choiceResponses[index];
+            npcMessageText.text = loadingText;
 
         if (choiceButtons == null)
             return;
 
         foreach (Button b in choiceButtons)
         {
-            if (b != null)
-                b.gameObject.SetActive(false);
+            if (b == null)
+                continue;
+
+            b.gameObject.SetActive(true);
+            b.interactable = false;
+
+            TMP_Text label = b.GetComponentInChildren<TMP_Text>();
+            if (label != null)
+                label.text = loadingText;
         }
+    }
+
+    public void SetTurn(string npcReply, string[] choices)
+    {
+        if (npcMessageText != null)
+            npcMessageText.text = npcReply ?? "";
+
+        if (choiceButtons == null)
+            return;
+
+        for (int i = 0; i < choiceButtons.Length; i++)
+        {
+            if (choiceButtons[i] == null)
+                continue;
+
+            bool show = choices != null && i < choices.Length && !string.IsNullOrEmpty(choices[i]);
+            choiceButtons[i].gameObject.SetActive(show);
+
+            if (!show)
+                continue;
+
+            choiceButtons[i].interactable = true;
+
+            TMP_Text label = choiceButtons[i].GetComponentInChildren<TMP_Text>();
+            if (label != null)
+                label.text = choices[i];
+        }
+    }
+
+    private void OnChoiceClicked(int index)
+    {
+        if (dialogueManager == null)
+            return;
+
+        if (choiceButtons != null)
+        {
+            foreach (Button b in choiceButtons)
+            {
+                if (b != null)
+                    b.interactable = false;
+            }
+        }
+
+        dialogueManager.OnPlayerChose(index);
     }
 }
