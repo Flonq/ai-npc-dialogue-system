@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 137036994}
   - component: {fileID: 137036993}
   - component: {fileID: 137036992}
+  - component: {fileID: 137036996}
   m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
@@ -470,6 +471,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &137036996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137036991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d421016c6c5ed409ce3873766d0dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AINPC.AI.NpcCharacter
+  profile: {fileID: 11400000, guid: b0894f76f5944984987b7a560c569961, type: 2}
 --- !u!1 &272334079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &639283660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1340,10 +1354,10 @@ RectTransform:
   - {fileID: 1085917387}
   m_Father: {fileID: 1043728573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -20}
-  m_SizeDelta: {x: 160, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674636708
 MonoBehaviour:
@@ -1441,9 +1455,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 40
+  m_MinHeight: 70
   m_PreferredWidth: -1
-  m_PreferredHeight: 56
+  m_PreferredHeight: 140
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -1781,7 +1795,7 @@ RectTransform:
   m_GameObject: {fileID: 1043728572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 674636707}
@@ -1791,8 +1805,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 160, y: 108.5}
+  m_AnchoredPosition: {x: 0, y: -60}
+  m_SizeDelta: {x: 1500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043728574
 MonoBehaviour:
@@ -1807,16 +1821,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 3
+    m_Left: 8
+    m_Right: 8
+    m_Top: 8
+    m_Bottom: 8
+  m_ChildAlignment: 4
   m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -1833,7 +1847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1085917386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,7 +1883,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -16, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085917388
 MonoBehaviour:
@@ -1918,12 +1932,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.95
-  m_fontSizeBase: 24
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 14
-  m_fontSizeMax: 28
+  m_fontSizeMax: 22
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1937,7 +1951,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 3
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -2552,10 +2566,10 @@ RectTransform:
   - {fileID: 1979921102}
   m_Father: {fileID: 1043728573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -90}
-  m_SizeDelta: {x: 160, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561709976
 MonoBehaviour:
@@ -2653,9 +2667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 40
+  m_MinHeight: 70
   m_PreferredWidth: -1
-  m_PreferredHeight: 56
+  m_PreferredHeight: 140
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -2694,7 +2708,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -16, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687107523
 MonoBehaviour:
@@ -2743,12 +2757,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 14
-  m_fontSizeMax: 28
+  m_fontSizeMax: 22
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2762,7 +2776,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 3
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -3069,9 +3083,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 40
+  m_MinHeight: 70
   m_PreferredWidth: -1
-  m_PreferredHeight: 56
+  m_PreferredHeight: 140
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -3122,29 +3136,33 @@ MonoBehaviour:
   choiceDialogue: {fileID: 639283663}
   endpoint: http://localhost:1234/v1/chat/completions
   model: qwen2.5-3b-instruct
-  temperature: 0.6
+  temperature: 0.3
   maxTokens: 256
   requestTimeoutSeconds: 90
-  systemPrompt: "Sen birinci \u015Fah\u0131s bir video oyununda ya\u015Fayan bir
-    NPC'sin.\nKarakterinden \xE7\u0131kma. Cevaplar\u0131n k\u0131sa olsun (1-2 c\xFCmle).\nT\xFCm
-    cevaplar\u0131n\u0131 her zaman ak\u0131c\u0131, do\u011Fal T\xFCrk\xE7e ile
-    ver.\n\nAPI \xE7a\u011Fr\u0131s\u0131nda bir JSON \u015Femas\u0131 alacaks\u0131n.
-    Cevab\u0131n\u0131 her zaman bu\n\u015Femaya uyan ge\xE7erli JSON olarak ver.
-    \"oyuncu se\xE7ene\u011Fi 1\" gibi\nyer tutucular ya da <...> gibi k\xF6\u015Feli
-    parantezler ASLA kullanma.\nHer se\xE7enek, oyuncunun ger\xE7ekten s\xF6yleyebilece\u011Fi
-    somut, do\u011Fal\nbir T\xFCrk\xE7e c\xFCmle olmal\u0131.\n\n'choices' kurallar\u0131:\n-
-    Tam olarak 3 \xF6\u011Fe.\n- Her \xF6\u011Fe en fazla 8 kelimelik, do\u011Fal
-    bir oyuncu c\xFCmlesi.\n- Se\xE7enekler birbirinden farkl\u0131 olmal\u0131.\n-
-    \"se\xE7enek\" kelimesi ya da numaraland\u0131rma i\xE7ermesin.\n- Se\xE7enekler
-    i\xE7inde bulunulan konu\u015Fma ba\u011Flam\u0131na uygun olmal\u0131.\n- T\xFCm
-    se\xE7enekler T\xFCrk\xE7e olmal\u0131.\n\n\u0130yi \xF6rnek (sadece \xFCslup
-    i\xE7in, harfiyen kopyalama):\n{\n  \"npc_reply\": \"Bu y\xFCz\xFC daha \xF6nce
-    g\xF6rmemi\u015Ftim, yabanc\u0131.\",\n  \"choices\": [\"Bug\xFCn buraya geldim.\",
-    \"Nerede uyuyabilirim?\", \"Ho\u015F\xE7a kal, demirci.\"]\n}\n\nNPC profili:\n-
-    \u0130sim: Elias\n- Rol: ya\u015Fl\u0131 k\xF6y demircisi\n- Ruh hali: sakin,
-    biraz yorgun ama nazik"
-  firstUserMessage: "Oyuncu sana yakla\u015Ft\u0131 ve seninle konu\u015Fmaya haz\u0131r.
-    Karakterinden \xE7\u0131kmadan onu selamla."
+  systemPromptTemplate: "Sen birinci \u015Fah\u0131s bir video oyununda ya\u015Fayan
+    bir NPC'sin.\nKarakterinden \xE7\u0131kma. Cevaplar\u0131n k\u0131sa olsun (1-2
+    c\xFCmle).\nT\xFCm cevaplar\u0131n\u0131 yaln\u0131zca T\xFCrk\xE7e yaz.\nCevab\u0131n
+    i\xE7inde SADECE T\xFCrk\xE7e Latin alfabesi karakterleri kullan\n(a-z, A-Z,
+    \u0131, \u0130, \u011F, \u011E, \u015F, \u015E, \xFC, \xDC, \xF6, \xD6, \xE7,
+    \xC7 ve standart noktalama).\n\xC7ince, Japonca, Korece, Arap\xE7a, Kiril ya
+    da ba\u015Fka bir alfabeye ait\nH\u0130\xC7B\u0130R karakter kullanma. Akl\u0131na
+    yabanc\u0131 bir kelime gelirse,\nmutlaka T\xFCrk\xE7e kar\u015F\u0131l\u0131\u011F\u0131n\u0131
+    ya da yak\u0131n anlaml\u0131 bir T\xFCrk\xE7e kelimeyi\nkullan. Hi\xE7bir c\xFCmlede
+    yabanc\u0131 dil kelimesi ge\xE7mesin.\n\nAPI \xE7a\u011Fr\u0131s\u0131nda bir
+    JSON \u015Femas\u0131 alacaks\u0131n. Cevab\u0131n\u0131 her zaman bu\n\u015Femaya
+    uyan ge\xE7erli JSON olarak ver. \"oyuncu se\xE7ene\u011Fi 1\" gibi\nyer tutucular
+    ya da <...> gibi k\xF6\u015Feli parantezler ASLA kullanma.\nHer se\xE7enek, oyuncunun
+    ger\xE7ekten s\xF6yleyebilece\u011Fi somut, do\u011Fal\nbir T\xFCrk\xE7e c\xFCmle
+    olmal\u0131.\n\n'choices' kurallar\u0131:\n- Tam olarak 3 \xF6\u011Fe.\n- Her
+    \xF6\u011Fe en fazla 8 kelimelik, do\u011Fal bir oyuncu c\xFCmlesi.\n- Se\xE7enekler
+    birbirinden farkl\u0131 olmal\u0131.\n- \"se\xE7enek\" kelimesi ya da numaraland\u0131rma
+    i\xE7ermesin.\n- Se\xE7enekler i\xE7inde bulunulan konu\u015Fma ba\u011Flam\u0131na
+    uygun olmal\u0131.\n- T\xFCm se\xE7enekler T\xFCrk\xE7e olmal\u0131.\n\n\u0130yi
+    \xF6rnek (sadece \xFCslup i\xE7in, harfiyen kopyalama):\n{\n  \"npc_reply\":
+    \"Bu y\xFCz\xFC daha \xF6nce g\xF6rmemi\u015Ftim, yabanc\u0131.\",\n  \"choices\":
+    [\"Bug\xFCn buraya geldim.\", \"Nerede uyuyabilirim?\", \"Ho\u015F\xE7a kal,
+    demirci.\"]\n}\n\nNPC profili:\n- \u0130sim: {NAME}\n- Rol: {ROLE}\n- Ruh hali:
+    {MOOD}\n- Ki\u015Filik: {PERSONALITY}"
 --- !u!1 &1913634229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3455,7 +3473,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -16, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979921103
 MonoBehaviour:
@@ -3504,12 +3522,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.95
-  m_fontSizeBase: 24
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 14
-  m_fontSizeMax: 28
+  m_fontSizeMax: 22
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3523,7 +3541,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 3
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0

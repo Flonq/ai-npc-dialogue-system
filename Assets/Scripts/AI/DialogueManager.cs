@@ -22,54 +22,73 @@ namespace AINPC.AI
         [SerializeField] private int requestTimeoutSeconds = 60;
 
         [Header("Prompts")]
-        [TextArea(6, 16)]
-        [SerializeField] private string systemPrompt =
-    @"You are an NPC in a first-person video game.
-    Stay in character. Keep replies short (1-2 sentences).
+        [TextArea(8, 20)]
+        [SerializeField] private string systemPromptTemplate =
+@"Sen birinci şahıs bir video oyununda yaşayan bir NPC'sin.
+Karakterinden çıkma. Cevapların kısa olsun (1-2 cümle).
+Tüm cevaplarını her zaman akıcı, doğal Türkçe ile ver.
 
-    You will receive a JSON schema in the API call. Always answer in valid JSON
-    matching that schema. Do NOT use placeholder text such as 'player option 1'
-    or angle brackets like <...>. Every choice must be a concrete, natural
-    sentence the player could actually say.
+API çağrısında bir JSON şeması alacaksın. Cevabını her zaman bu
+şemaya uyan geçerli JSON olarak ver. ""oyuncu seçeneği 1"" gibi
+yer tutucular ya da <...> gibi köşeli parantezler ASLA kullanma.
+Her seçenek, oyuncunun gerçekten söyleyebileceği somut, doğal
+bir Türkçe cümle olmalı.
 
-    Rules for 'choices':
-    - Exactly 3 items.
-    - Each item is a short, natural reply the PLAYER says, max 5 words.
-    - Choices must be different from each other.
-    - Never include the word 'option' or any numbering.
+'choices' kuralları:
+- Tam olarak 3 öğe.
+- Her öğe en fazla 8 kelimelik, doğal bir oyuncu cümlesi.
+- Seçenekler birbirinden farklı olmalı.
+- ""seçenek"" kelimesi ya da numaralandırma içermesin.
+- Seçenekler içinde bulunulan konuşma bağlamına uygun olmalı.
+- Tüm seçenekler Türkçe olmalı.
 
-    Good example (style only, do not copy):
-    {
-    ""npc_reply"": ""You look new around here."",
-    ""choices"": [""I just arrived today."", ""Where can I sleep?"", ""Goodbye, blacksmith.""]
-    }
+İyi örnek (sadece üslup için, harfiyen kopyalama):
+{
+  ""npc_reply"": ""Bu yüzü daha önce görmemiştim, yabancı."",
+  ""choices"": [""Bugün buraya geldim."", ""Nerede uyuyabilirim?"", ""Hoşça kal, demirci.""]
+}
 
-    NPC profile:
-    - Name: Elias
-    - Role: old village blacksmith
-    - Mood: calm, slightly tired but kind";
+NPC profili:
+- İsim: {NAME}
+- Rol: {ROLE}
+- Ruh hali: {MOOD}
+- Kişilik: {PERSONALITY}";
 
-        [TextArea(2, 4)]
-        [SerializeField] private string firstUserMessage =
-            "The player approaches you and is ready to talk. Greet them in character.";
-
+        private NpcProfile activeProfile;
         private readonly List<ChatMessage> history = new List<ChatMessage>();
         private string[] currentChoices = new string[0];
         private bool isWaiting;
 
-        public void StartDialogue()
+        public void StartDialogue(NpcProfile profile)
         {
             if (isWaiting)
                 return;
 
+            if (profile == null)
+            {
+                Debug.LogError("[DialogueManager] StartDialogue called with null profile.");
+                return;
+            }
+
+            activeProfile = profile;
+
             history.Clear();
-            history.Add(new ChatMessage { role = "system", content = systemPrompt });
-            history.Add(new ChatMessage { role = "user", content = firstUserMessage });
+            history.Add(new ChatMessage { role = "system", content = BuildSystemPrompt(profile) });
+            history.Add(new ChatMessage { role = "user", content = profile.firstUserMessage });
 
             if (choiceDialogue != null)
                 choiceDialogue.ShowLoading();
 
             StartCoroutine(RequestTurn());
+        }
+
+        private string BuildSystemPrompt(NpcProfile profile)
+        {
+            return systemPromptTemplate
+                .Replace("{NAME}", profile.displayName ?? "")
+                .Replace("{ROLE}", profile.role ?? "")
+                .Replace("{MOOD}", profile.mood ?? "")
+                .Replace("{PERSONALITY}", profile.personality ?? "");
         }
 
         public void OnPlayerChose(int index)
@@ -94,6 +113,7 @@ namespace AINPC.AI
             StopAllCoroutines();
             history.Clear();
             currentChoices = new string[0];
+            activeProfile = null;
             isWaiting = false;
         }
 

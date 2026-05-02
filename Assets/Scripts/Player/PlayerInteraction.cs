@@ -25,6 +25,7 @@ namespace AINPC.Player
         private int npcLayer = -1;
         private bool canInteractWithNpc;
         private bool isDialogueOpen;
+        private NpcCharacter activeNpc;
 
         public static bool IsDialogueOpen { get; private set; }
 
@@ -52,6 +53,7 @@ namespace AINPC.Player
         private void Update()
         {
             canInteractWithNpc = false;
+            activeNpc = null;
 
             if (cameraTransform == null || npcLayer == -1)
             {
@@ -65,7 +67,10 @@ namespace AINPC.Player
             if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
             {
                 if (hit.collider != null && hit.collider.gameObject.layer == npcLayer)
-                    canInteractWithNpc = true;
+                {
+                    activeNpc = hit.collider.GetComponentInParent<NpcCharacter>();
+                    canInteractWithNpc = activeNpc != null && activeNpc.Profile != null;
+                }
             }
 
             if (promptHint != null)
@@ -77,6 +82,12 @@ namespace AINPC.Player
 
         private void OpenDialogue()
         {
+            if (activeNpc == null || activeNpc.Profile == null)
+            {
+                Debug.LogWarning("[PlayerInteraction] No NpcCharacter/Profile found on target.");
+                return;
+            }
+
             isDialogueOpen = true;
             IsDialogueOpen = true;
 
@@ -84,7 +95,7 @@ namespace AINPC.Player
                 dialoguePanel.SetActive(true);
 
             if (dialogueManager != null)
-                dialogueManager.StartDialogue();
+                dialogueManager.StartDialogue(activeNpc.Profile);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
