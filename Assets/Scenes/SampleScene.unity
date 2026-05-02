@@ -154,7 +154,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: 280, y: 50}
+  m_SizeDelta: {x: 435, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &36735226
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interact with E
+  m_text: "Konu\u015Fmak i\xE7in E'ye bas"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Close
+  m_text: Kapat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1049,9 +1049,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hey stranger!
-
-    You seem new around here.'
+  m_text: "\u0131\u011F\u015F\u0130\u011E\u015E\xFC\xF6\xE7\xDC\xD6\xC7 T\xFCrk\xE7e
+    karakter testi"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1240,7 +1239,6 @@ GameObject:
   - component: {fileID: 654903915}
   - component: {fileID: 654903918}
   - component: {fileID: 654903917}
-  - component: {fileID: 654903916}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -1269,25 +1267,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &654903916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654903914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7061c605107a6fb4c88a17202d214847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChoiceDialogue
-  npcMessageText: {fileID: 0}
-  choiceButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  dialogueManager: {fileID: 0}
-  loadingText: ...
 --- !u!114 &654903917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,7 +1504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume Game
+  m_text: Devam Et
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1775,53 +1754,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897984389}
   m_CullTransparentMesh: 1
---- !u!1 &958336343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 958336345}
-  - component: {fileID: 958336344}
-  m_Layer: 0
-  m_Name: LMStudioTester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &958336344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958336343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efb026db93e3f3245993e4ef68857856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LMStudioTester
-  endpoint: http://localhost:1234/v1/chat/completions
-  model: qwen2.5-0.5b-instruct
-  userMessage: Say hello in one short sentence.
---- !u!4 &958336345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958336343}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.02501, y: -0.16333, z: -30.49812}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043728572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,7 +2853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit Game
+  m_text: "\xC7\u0131k\u0131\u015F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -3189,20 +3121,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   choiceDialogue: {fileID: 639283663}
   endpoint: http://localhost:1234/v1/chat/completions
-  model: qwen2.5-0.5b-instruct
-  temperature: 0.4
-  maxTokens: 200
-  requestTimeoutSeconds: 60
-  systemPrompt: "You are an NPC in a first-person video game.\r\nStay in character.
-    Keep replies short (1-2 sentences).\r\nAlways answer ONLY with this exact JSON
-    object and nothing else:\r\n{\r\n  \"npc_reply\": \"<one short line the NPC says>\",\r\n 
-    \"choices\": [\"<player option 1>\", \"<player option 2>\", \"<player option
-    3>\"]\r\n}\r\nThe 3 choices must be things the PLAYER could say next, max ~8
-    words each.\r\nDo not include any text, comments, or code fences outside the
-    JSON.\r\n\r\nNPC profile:\r\n- Name: Elias\r\n- Role: old village blacksmith\r\n-
-    Mood: calm, slightly tired but kind"
-  firstUserMessage: The player approaches you and is ready to talk. Greet them in
-    character.
+  model: qwen2.5-3b-instruct
+  temperature: 0.6
+  maxTokens: 256
+  requestTimeoutSeconds: 90
+  systemPrompt: "Sen birinci \u015Fah\u0131s bir video oyununda ya\u015Fayan bir
+    NPC'sin.\nKarakterinden \xE7\u0131kma. Cevaplar\u0131n k\u0131sa olsun (1-2 c\xFCmle).\nT\xFCm
+    cevaplar\u0131n\u0131 her zaman ak\u0131c\u0131, do\u011Fal T\xFCrk\xE7e ile
+    ver.\n\nAPI \xE7a\u011Fr\u0131s\u0131nda bir JSON \u015Femas\u0131 alacaks\u0131n.
+    Cevab\u0131n\u0131 her zaman bu\n\u015Femaya uyan ge\xE7erli JSON olarak ver.
+    \"oyuncu se\xE7ene\u011Fi 1\" gibi\nyer tutucular ya da <...> gibi k\xF6\u015Feli
+    parantezler ASLA kullanma.\nHer se\xE7enek, oyuncunun ger\xE7ekten s\xF6yleyebilece\u011Fi
+    somut, do\u011Fal\nbir T\xFCrk\xE7e c\xFCmle olmal\u0131.\n\n'choices' kurallar\u0131:\n-
+    Tam olarak 3 \xF6\u011Fe.\n- Her \xF6\u011Fe en fazla 8 kelimelik, do\u011Fal
+    bir oyuncu c\xFCmlesi.\n- Se\xE7enekler birbirinden farkl\u0131 olmal\u0131.\n-
+    \"se\xE7enek\" kelimesi ya da numaraland\u0131rma i\xE7ermesin.\n- Se\xE7enekler
+    i\xE7inde bulunulan konu\u015Fma ba\u011Flam\u0131na uygun olmal\u0131.\n- T\xFCm
+    se\xE7enekler T\xFCrk\xE7e olmal\u0131.\n\n\u0130yi \xF6rnek (sadece \xFCslup
+    i\xE7in, harfiyen kopyalama):\n{\n  \"npc_reply\": \"Bu y\xFCz\xFC daha \xF6nce
+    g\xF6rmemi\u015Ftim, yabanc\u0131.\",\n  \"choices\": [\"Bug\xFCn buraya geldim.\",
+    \"Nerede uyuyabilirim?\", \"Ho\u015F\xE7a kal, demirci.\"]\n}\n\nNPC profili:\n-
+    \u0130sim: Elias\n- Rol: ya\u015Fl\u0131 k\xF6y demircisi\n- Ruh hali: sakin,
+    biraz yorgun ama nazik"
+  firstUserMessage: "Oyuncu sana yakla\u015Ft\u0131 ve seninle konu\u015Fmaya haz\u0131r.
+    Karakterinden \xE7\u0131kmadan onu selamla."
 --- !u!1 &1913634229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3214,7 +3156,7 @@ GameObject:
   - component: {fileID: 1913634231}
   - component: {fileID: 1913634230}
   m_Layer: 0
-  m_Name: PauseMenu
+  m_Name: PauseManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3741,5 +3683,4 @@ SceneRoots:
   - {fileID: 1482353044}
   - {fileID: 1264601922}
   - {fileID: 1913634231}
-  - {fileID: 958336345}
   - {fileID: 1905415282}

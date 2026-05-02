@@ -1,81 +1,84 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+namespace AINPC.Player
 {
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private Button resumeButton;
-    [SerializeField] private Button quitButton;
-    [SerializeField] private PlayerInteraction playerInteraction;
-    [SerializeField] private GameObject crosshair;
-
-    public static bool IsPaused { get; private set; }
-
-    private void Awake()
+    public class PauseMenu : MonoBehaviour
     {
-        if (pausePanel != null)
-            pausePanel.SetActive(false);
-        IsPaused = false;
+        [SerializeField] private GameObject pausePanel;
+        [SerializeField] private Button resumeButton;
+        [SerializeField] private Button quitButton;
+        [SerializeField] private PlayerInteraction playerInteraction;
+        [SerializeField] private GameObject crosshair;
 
-        if (resumeButton != null)
-            resumeButton.onClick.AddListener(ResumeGame);
-        if (quitButton != null)
-            quitButton.onClick.AddListener(QuitGame);
-    }
+        public static bool IsPaused { get; private set; }
 
-    private void OnDestroy()
-    {
-        if (resumeButton != null)
-            resumeButton.onClick.RemoveListener(ResumeGame);
-        if (quitButton != null)
-            quitButton.onClick.RemoveListener(QuitGame);
-    }
+        private void Awake()
+        {
+            if (pausePanel != null)
+                pausePanel.SetActive(false);
+            IsPaused = false;
 
-    private void Update()
-    {
-        if (!Input.GetKeyDown(KeyCode.Escape))
-            return;
+            if (resumeButton != null)
+                resumeButton.onClick.AddListener(ResumeGame);
+            if (quitButton != null)
+                quitButton.onClick.AddListener(QuitGame);
+        }
 
-        if (playerInteraction != null && playerInteraction.TryConsumeEscapeForDialogue())
-            return;
+        private void OnDestroy()
+        {
+            if (resumeButton != null)
+                resumeButton.onClick.RemoveListener(ResumeGame);
+            if (quitButton != null)
+                quitButton.onClick.RemoveListener(QuitGame);
+        }
 
-        if (IsPaused)
-            ResumeGame();
-        else
-            PauseGame();
-    }
+        private void Update()
+        {
+            if (!Input.GetKeyDown(KeyCode.Escape))
+                return;
 
-    private void PauseGame()
-    {
-        IsPaused = true;
-        Time.timeScale = 0f;
-        if (pausePanel != null)
-            pausePanel.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        if (crosshair != null)
-            crosshair.SetActive(false);
-    }
+            if (playerInteraction != null && playerInteraction.TryConsumeEscapeForDialogue())
+                return;
 
-    public void ResumeGame()
-    {
-        IsPaused = false;
-        Time.timeScale = 1f;
-        if (pausePanel != null)
-            pausePanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        if (crosshair != null)
-            crosshair.SetActive(true);
-    }
+            if (IsPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
 
-    private void QuitGame()
-    {
-        Time.timeScale = 1f;
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        private void PauseGame()
+        {
+            IsPaused = true;
+            Time.timeScale = 0f;
+            if (pausePanel != null)
+                pausePanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            if (crosshair != null)
+                crosshair.SetActive(false);
+        }
+
+        public void ResumeGame()
+        {
+            IsPaused = false;
+            Time.timeScale = 1f;
+            if (pausePanel != null)
+                pausePanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            if (crosshair != null)
+                crosshair.SetActive(true);
+        }
+
+        private void QuitGame()
+        {
+            Time.timeScale = 1f;
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+            Application.Quit();
+    #endif
+        }
     }
 }
